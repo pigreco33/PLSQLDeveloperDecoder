@@ -1,0 +1,48 @@
+<html>
+<head>
+
+</head>
+<body>
+<script type ="text/javascript">
+function decode(encoded)
+ {
+    var key = Number(encoded.substring(0,4));
+    encoded = encoded.substring(4);
+    var decoded = "";
+    for (i = 0; i < encoded.length; i+=4)
+    {
+          var tmp = Number(encoded.substring(i,i+4));
+          tmp -=1000;
+          var mask = (tmp ^ (key + (i/4 + 1)*10));
+          decoded +=(String.fromCharCode(mask>>4));
+     }
+     return decoded;
+  }
+  
+  
+ function printOutput(encodedIdElement,resultIdElement)
+ {
+ var dec = decode(document.getElementById(encodedIdElement).value);
+ 	document.getElementById(resultIdElement).innerHTML = dec;
+  }
+</script>
+<h3>
+Paste PLSQLDeveloper row from user.prefs (beta version)
+</h3>
+<form>
+  <input id="encoded" type="text" value="" size=40 />
+  <input type="button" value="decode" onclick="printOutput('encoded','result')" />
+</form>
+
+<div id="result">
+
+</div>
+
+
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Licenza Creative Commons" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />Quest'opera è distribuita con Licenza <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribuzione - Condividi allo stesso modo 4.0 Internazionale</a>.
+</body>
+
+
+
+</html>
